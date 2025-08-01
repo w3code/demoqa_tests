@@ -1,5 +1,3 @@
-import time
-
 import allure
 
 from data import TestData
