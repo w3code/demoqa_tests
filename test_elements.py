@@ -14,9 +14,6 @@ def test_text_box(browser):
     test_data = TestData()
 
     def check_is_data_correct(field_id, data):
-        print(field_id)
-        print(data)
-        print(page.get_field_text(field_id))
         assert data in page.get_field_text(field_id)
 
 
