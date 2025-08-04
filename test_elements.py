@@ -1,7 +1,10 @@
+import random
+
 import allure
 
 from data import TestData
 from pages.check_box_page import CheckBoxPage
+from pages.radio_button_page import RadioButtonPage
 from pages.text_box_page import TextBoxPage
 
 
@@ -31,9 +34,9 @@ def test_text_box(browser):
 
 
 @allure.tag("WEB")
-@allure.title("Test Text Box")
+@allure.title("Test Check Box")
 @allure.label("owner", "w3code")
-@allure.feature("Fill text box form")
+@allure.feature("Check checkboxes")
 def test_check_box(browser):
     page = CheckBoxPage(browser)
 
@@ -48,3 +51,22 @@ def test_check_box(browser):
     page.click_expand_all()
 
     verify_is_checkboxes_checked(page.get_checkbox_id_list())
+
+
+@allure.tag("WEB")
+@allure.title("Test Radio Button")
+@allure.label("owner", "w3code")
+@allure.feature("Test radio buttons")
+def test_radio_button(browser):
+
+    def verify_success_text(testing_radio):
+        assert page.get_success_text() == testing_radio
+
+    testing_radio = random.choice(["Impressive", "Yes"])
+
+    page = RadioButtonPage(browser)
+
+    page.open("/radio-button")
+    page.check_random_radiobox(testing_radio)
+
+    verify_success_text(testing_radio)
