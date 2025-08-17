@@ -16,6 +16,9 @@ class TestData:
         self.user_email: str = faker.email()
         self.user_gender: str = random.choice(["Male", "Female", "Other"])
         self.user_phone_number: str = faker.numerify("##########")
+        self.user_age: str = str(faker.random_int(18, 60))
+        self.user_salary: str = str(faker.random_int(10000, 100000))
+        self.user_department: str = faker.word()
         self.user_birth_day, self.user_birth_month, self.user_birth_year = get_birth_date()
         self.user_subject: str = random.choice(
             ("Hindi", "English", "Maths", "Physics", "Chemistry", "Biology",
