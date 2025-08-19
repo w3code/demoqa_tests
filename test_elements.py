@@ -3,6 +3,7 @@ import random
 import allure
 
 from data import TestData
+from pages.buttons_page import ButtonsPage
 from pages.check_box_page import CheckBoxPage
 from pages.radio_button_page import RadioButtonPage
 from pages.text_box_page import TextBoxPage
@@ -146,3 +147,42 @@ def test_web_tables_add_item(browser):
     assert test_data.user_email == added_data[3], "Email incorrect"
     assert test_data.user_salary == added_data[4], "Salary incorrect"
     assert test_data.user_department == added_data[5], "Department incorrect"
+
+
+@allure.tag("WEB")
+@allure.title("Test Buttons double click")
+@allure.label("owner", "w3code")
+@allure.feature("Test Buttons double click")
+def test_buttons_double_click(browser):
+    page = ButtonsPage(browser)
+
+    page.open("/buttons")
+    page.double_click()
+
+    assert page.get_double_click_message() == "You have done a double click", "Double click failed"
+
+
+@allure.tag("WEB")
+@allure.title("Test Buttons right click")
+@allure.label("owner", "w3code")
+@allure.feature("Test Buttons right click")
+def test_buttons_double_click(browser):
+    page = ButtonsPage(browser)
+
+    page.open("/buttons")
+    page.right_click()
+
+    assert page.get_right_click_message() == "You have done a right click", "Right click failed"
+
+
+@allure.tag("WEB")
+@allure.title("Test Buttons dynamic click")
+@allure.label("owner", "w3code")
+@allure.feature("Test Buttons dynamic click")
+def test_buttons_dynamic_click(browser):
+    page = ButtonsPage(browser)
+
+    page.open("/buttons")
+    page.click_button_with_dynamic_id()
+
+    assert page.get_dynamic_click_message() == "You have done a dynamic click", "Dynamic click failed"
