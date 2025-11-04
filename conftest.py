@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.bidi.browser import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 
+from utils import attach
+
 
 @pytest.fixture
 def browser():
@@ -20,12 +22,16 @@ def browser():
 }
     options.capabilities.update(selenoid_capabilities)
     browser = webdriver.Remote(
-        command_executor="http://127.0.0.1:4444/wd/hub",
+        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
     browser.set_window_size(1920, 1080)
     browser.implicitly_wait(5)
 
     yield browser
+
+    attach.add_screenshot(browser)
+    attach.add_html(browser)
+    attach.add_video(browser)
 
     browser.quit()
