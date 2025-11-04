@@ -20,7 +20,7 @@ def browser():
 }
     options.capabilities.update(selenoid_capabilities)
     browser = webdriver.Remote(
-        command_executor="http://localhost:4444/wd/hub",
+        command_executor="http://127.0.0.1:4444/wd/hub",
         options=options
     )
     browser.set_window_size(1920, 1080)
