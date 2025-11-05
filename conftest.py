@@ -24,7 +24,8 @@ def browser():
     "browserName": "chrome",
     "browserVersion": "128.0",
     "selenoid:options": {
-        "enableVideo": False,
+        "enableVNC": True,
+        "enableVideo": True,
         "pageLoadStrategy": "eager"
         }
     }
