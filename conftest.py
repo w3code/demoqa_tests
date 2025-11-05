@@ -17,7 +17,8 @@ def browser():
     "browserName": "chrome",
     "browserVersion": "128.0",
     "selenoid:options": {
-        "enableVideo": False
+        "enableVideo": False,
+        "pageLoadStrategy": "eager"
     }
 }
     options.capabilities.update(selenoid_capabilities)
