@@ -1,4 +1,7 @@
+import os
+
 import pytest
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -7,6 +10,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from utils import attach
 
+
+@pytest.fixture(scope="session", autouse=True)
+def load_env():
+    load_dotenv()
 
 @pytest.fixture
 def browser():
@@ -19,11 +26,13 @@ def browser():
     "selenoid:options": {
         "enableVideo": False,
         "pageLoadStrategy": "eager"
+        }
     }
-}
     options.capabilities.update(selenoid_capabilities)
+    login = os.getenv("LOGIN")
+    password = os.getenv("PASSWORD")
     browser = webdriver.Remote(
-        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
     browser.set_window_size(1920, 1080)
